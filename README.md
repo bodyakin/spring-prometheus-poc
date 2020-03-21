@@ -6,5 +6,8 @@ Run MongoDB, Application, Prometheus and Grafana:
 docker-compose up -d
 ```
 
-Grafana available there http://localhost:3000
+Prometheus
+http://localhost:9090
+
+Grafana http://localhost:3000
 admin/admin

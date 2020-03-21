@@ -1,7 +1,6 @@
 version: '3.7'
 
 services:
-
   mongo:
     image: mongo:3.6
     restart: always
@@ -11,13 +10,11 @@ services:
     volumes:
       - /data/db
 
-  spring-prometheus:
+  spring:
     image: buravil/spring-prometheus:0.0.1
     container_name: springprometheus
     links:
       - mongo
-    environment:
-      - SPRING_DATA_MONGODB_HOST=mongo
     depends_on:
       - mongo
     ports:
@@ -25,19 +22,19 @@ services:
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      - '-config.file=/etc/prometheus/prometheus.yml'
-    expose:
-      - 9090
+      - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - "9090:9090"
     depends_on:
-      - spring-prometheus
+      - spring
+    restart: always
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:6.4.5
     ports:
       - "3000:3000"
     volumes:
