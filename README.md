@@ -1,6 +1,10 @@
-docker run -d -p 27017:27017 -v ~/data:/data/db --name mongo mongo
+# Proof of concept Spring Boot application with micrometer and Prometheus monitoring
 
-docker pull prom/prometheus
-docker run -d --name=prometheus -p 9090:9090 -v ./prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+Run MongoDB, Application, Prometheus and Grafana:
 
-docker run -d -p 3000:3000 grafana/grafana
+```shell script
+docker-compose up -d
+```
+
+Grafana available there http://localhost:3000
+admin/admin
