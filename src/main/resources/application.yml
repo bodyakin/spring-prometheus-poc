@@ -1,0 +1,17 @@
+spring.application.name: demoservice
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring.data.mongodb.uri: mongodb://localhost:27017/mydb
+logging.level.org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
