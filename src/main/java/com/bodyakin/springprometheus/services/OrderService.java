@@ -13,10 +13,11 @@ public class OrderService {
 
     public String saveOrder(Order order) {
         return repository.save(order)
-            .getId();
+                .getId();
     }
 
     public Order getOrderById(String id) {
-        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return repository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

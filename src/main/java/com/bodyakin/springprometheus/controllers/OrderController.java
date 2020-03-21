@@ -3,7 +3,6 @@ package com.bodyakin.springprometheus.controllers;
 import com.bodyakin.springprometheus.entities.Order;
 import com.bodyakin.springprometheus.services.OrderService;
 import io.micrometer.core.annotation.Counted;
-import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +38,6 @@ public class OrderController {
 
     @GetMapping("/{id}")
     @Counted(value = "Get order by id")
-//    @Timed(description = "Time spent getting order")
     public Order getOrderById(@PathVariable String id) throws InterruptedException {
         Thread.sleep((long) (Math.random() * 1000));
         return service.getOrderById(id);

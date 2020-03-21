@@ -31,21 +31,25 @@ public class ScheduledTask {
         log.info("Start task...");
         AtomicInteger finish = new AtomicInteger();
         AtomicInteger fail = new AtomicInteger();
-        repository.findAll().forEach(order -> {
-            //process
-            try {
-                Thread.sleep((long) (Math.random() * 500));
-                if (Math.random() > 0.5) {
-                    throw new RuntimeException();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                fail.getAndIncrement();
-            }
-            finish.getAndIncrement();
-            log.info("Process order [" + order.getId() + "]...");
-        });
+        repository.findAll()
+                .forEach(order -> {
+                    try {
+                        doWorkThatCanBeFailed();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        fail.getAndIncrement();
+                    }
+                    finish.getAndIncrement();
+                    log.info("Process order [" + order.getId() + "]...");
+                });
         this.finished.set(finish.get());
         this.failed.set(fail.get());
+    }
+
+    private void doWorkThatCanBeFailed() throws InterruptedException {
+        Thread.sleep((long) (Math.random() * 500));
+        if (Math.random() > 0.5) {
+            throw new RuntimeException();
+        }
     }
 }
