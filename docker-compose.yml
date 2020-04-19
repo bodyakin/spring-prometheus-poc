@@ -1,22 +1,19 @@
 version: '3.7'
 
 services:
-  mongo:
-    image: mongo:3.6
+  mongodb:
+    image: mongo
+    container_name: my-mongo
     restart: always
-    hostname: mongo
     ports:
       - '27017:27017'
-    volumes:
-      - /data/db
-
   spring:
     image: buravil/spring-prometheus:0.0.1
-    container_name: springprometheus
+    container_name: spring-actuator
     links:
-      - mongo
+      - mongodb
     depends_on:
-      - mongo
+      - mongodb
     ports:
       - 8080:8080
 

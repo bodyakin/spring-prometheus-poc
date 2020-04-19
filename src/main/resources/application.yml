@@ -8,10 +8,14 @@ management:
     health:
       show-details: always
 
-spring.data.mongodb.uri: mongodb://localhost:27017/mydb
+
+spring:
+  data:
+    mongodb:
+      host: mongodb
 logging.level.org:
-      springframework:
-        data:
-          mongodb:
-            core:
-              MongoTemplate: DEBUG
+  springframework:
+    data:
+      mongodb:
+        core:
+          MongoTemplate: DEBUG

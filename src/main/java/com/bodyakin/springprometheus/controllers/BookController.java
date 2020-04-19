@@ -1,8 +1,7 @@
 package com.bodyakin.springprometheus.controllers;
 
-import com.bodyakin.springprometheus.entities.Order;
-import com.bodyakin.springprometheus.services.OrderService;
-import io.micrometer.core.annotation.Counted;
+import com.bodyakin.springprometheus.entities.Book;
+import com.bodyakin.springprometheus.services.BookService;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
@@ -14,34 +13,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/orders")
+@RequestMapping(path = "/books")
 @RequiredArgsConstructor
-public class OrderController {
+public class BookController {
 
-    private final OrderService service;
+    private final BookService service;
     private final MeterRegistry meterRegistry;
-    private Counter createOrderCounter;
+    private Counter createBookCounter;
 
     @PostConstruct
     public void init() {
-        this.createOrderCounter = meterRegistry.counter("order.created");
+        this.createBookCounter = meterRegistry.counter("book_created");
     }
 
     @PostMapping
-    public String createOrder(@RequestBody Order order) {
-        String saved = service.saveOrder(order);
-        createOrderCounter.increment();
+    public String createBook(@RequestBody Book book) {
+        String saved = service.saveBook(book);
+        createBookCounter.increment();
         return saved;
     }
 
     @GetMapping("/{id}")
-    @Counted(value = "Get order by id")
-    public Order getOrderById(@PathVariable String id) throws InterruptedException {
-        Thread.sleep((long) (Math.random() * 1000));
-        return service.getOrderById(id);
+    public Book getBookById(@PathVariable String id) {
+        return service.getBookById(id);
     }
 
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return service.getAllBooks();
+    }
 
 }

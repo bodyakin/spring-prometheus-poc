@@ -1,6 +1,6 @@
 package com.bodyakin.springprometheus.metrics;
 
-import com.bodyakin.springprometheus.repositories.OrderRepository;
+import com.bodyakin.springprometheus.repositories.BookRepository;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
@@ -10,20 +10,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OrderRepositoryMetrics {
+public class BookRepositoryMetrics {
 
     private final MeterRegistry meterRegistry;
-    private final OrderRepository repository;
+    private final BookRepository repository;
 
     @EventListener(classes = ApplicationReadyEvent.class)
     public void applicationReadyEvent() {
-        Gauge.builder("orders.count",
-            this, OrderRepositoryMetrics::getOrderCounts)
-            .description("Order database size")
-            .register(meterRegistry);
+        Gauge.builder("books.count",
+                this, BookRepositoryMetrics::getBookCounts)
+                .description("Books collections size")
+                .register(meterRegistry);
     }
 
-    private double getOrderCounts() {
+    private double getBookCounts() {
         return repository.count();
     }
 
