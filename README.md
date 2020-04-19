@@ -1,4 +1,4 @@
-# Proof of concept Spring Boot application with micrometer and Prometheus monitoring
+# Proof of concept Spring Boot application with micrometer, MongoDB and Prometheus monitoring
 
 Run MongoDB, Application, Prometheus and Grafana:
 
