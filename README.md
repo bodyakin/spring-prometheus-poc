@@ -87,3 +87,6 @@ book_get_all_seconds_count{application="demoservice",class="com.bodyakin.springp
 book_get_all_seconds_sum{application="demoservice",class="com.bodyakin.springprometheus.services.BookService",exception="none",method="getAllBooks",} 4.627468766
 
 ```
+
+You can see this metrics visualisation in `Request duration` Grafana dashboard 
+![Image of reques-duration-dashboard](./images/request-duration-dashboard.png)
