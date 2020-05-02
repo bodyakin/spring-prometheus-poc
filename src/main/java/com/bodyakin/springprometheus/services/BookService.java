@@ -29,7 +29,7 @@ public class BookService {
     }
 
 
-    @Timed(value = "book_get_all")
+    @Timed(value = "book_get_all", histogram = true)
     public List<Book> getAllBooks() {
         randomDelay();
         return repository.findAll();
