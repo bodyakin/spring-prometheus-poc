@@ -36,6 +36,7 @@ services:
       - "3000:3000"
     volumes:
       - /var/lib/grafana
+      - ./config/grafana/provisioning/:/etc/grafana/provisioning/
     links:
       - prometheus
     depends_on:
