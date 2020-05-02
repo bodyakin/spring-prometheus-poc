@@ -89,4 +89,4 @@ book_get_all_seconds_sum{application="demoservice",class="com.bodyakin.springpro
 ```
 
 You can see this metrics visualisation in `Request duration` Grafana dashboard 
-![Image of reques-duration-dashboard](./images/request-duration-dashboard.png)
+![Image of reques-duration-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/request-duration-dashboard.png)
