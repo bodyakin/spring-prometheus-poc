@@ -1,4 +1,4 @@
-# Proof of concept Spring Boot application with micrometer, MongoDB and Prometheus monitoring
+# Proof of concept Spring Boot application with Micrometer, MongoDB and Prometheus monitoring
 
 Run MongoDB, Application, Prometheus and Grafana:
 
@@ -88,5 +88,5 @@ book_get_all_seconds_sum{application="demoservice",class="com.bodyakin.springpro
 
 ```
 
-You can see this metrics visualisation in `Request duration` Grafana dashboard 
+Visualization of these metrics you can find in `Request duration` Grafana dashboard 
 ![Image of reques-duration-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/request-duration-dashboard.png)
