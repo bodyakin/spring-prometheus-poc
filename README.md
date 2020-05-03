@@ -106,4 +106,4 @@ curl localhost:8080/books/5eaf01af72254072a79d82b8
 ```
 
 Usually we are interested in rate and increase of count metrics. See `Method invocation` dashboard 
-![Image of reques-duration-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/method-invocations-dashboard.png)
+![Image of method-invocations-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/method-invocations-dashboard.png)
