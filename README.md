@@ -90,3 +90,20 @@ book_get_all_seconds_sum{application="demoservice",class="com.bodyakin.springpro
 
 Visualization of these metrics you can find in `Request duration` Grafana dashboard 
 ![Image of reques-duration-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/request-duration-dashboard.png)
+
+## @Counted
+```java
+    @Counted(value = "book_get")
+    public Book getBookById(String id) {
+        return repository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+    }
+```
+
+Having response from `localhost:8080/books` we can request book by its id, for instance
+```shell script
+curl localhost:8080/books/5eaf01af72254072a79d82b8
+```
+
+Usually we are interested in rate and increase of count metrics. See `Method invocation` dashboard 
+![Image of reques-duration-dashboard](https://raw.githubusercontent.com/bodyakin/spring-prometheus-poc/master/images/method-invocations-dashboard.png)
